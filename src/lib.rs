@@ -22,6 +22,7 @@ pub mod pptt;
 pub mod rhct;
 pub mod rsdp;
 pub mod sdt;
+pub mod xsdt;
 
 use zerocopy::{byteorder, byteorder::LE, AsBytes};
 
