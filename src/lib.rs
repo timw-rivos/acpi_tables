@@ -13,6 +13,7 @@ extern crate alloc;
 use alloc::vec::Vec;
 
 pub mod aml;
+pub mod cedt;
 pub mod facs;
 pub mod fadt;
 pub mod gas;
