@@ -153,8 +153,8 @@ impl PciDevice {
         self.segment
     }
 
-    fn as_endpoint(&self) -> u32 {
-        (self.as_segment() as u32) << 16 | self.as_bdf() as u32
+    fn as_endpoint(&self, segment: u32) -> u32 {
+        (self.as_segment() as u32 - segment) << 16 | self.as_bdf() as u32
     }
 }
 
@@ -188,7 +188,7 @@ impl Aml for PciRange {
         sink.byte(ViotEntryType::PciRange as u8);
         sink.byte(0); // reserved
         sink.word(Self::len() as u16);
-        sink.dword(self.first.as_endpoint());
+        sink.dword(self.first.as_endpoint(self.first.segment as u32));
         sink.word(self.first.segment);
         sink.word(self.last.segment);
         sink.word(self.first.as_bdf());
